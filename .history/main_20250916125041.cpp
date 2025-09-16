@@ -8,7 +8,7 @@ const int WIDTH = 1080;
 const int HEIGHT = 640;
 const float PARTICLE_RADIUS = 30.0f;
 const float GRAVITY = 10.0f;
-const float TIME_STEP = 0.1f;
+const float TIME_STEP = 0.01f;
 
 
 int main() {
@@ -16,10 +16,7 @@ int main() {
     window.setFramerateLimit(60);
 
     std::vector<Particle> particles;
-    particles.emplace_back(WIDTH / 2 - 50, HEIGHT / 2 - 50);
-    particles.emplace_back(WIDTH / 2 + 50, HEIGHT / 2 - 50);
-    particles.emplace_back(WIDTH / 2 - 50, HEIGHT / 2 + 50);
-    particles.emplace_back(WIDTH / 2 + 50, HEIGHT / 2 + 50);
+    particles.emplace_back(WIDTH / 2, HEIGHT / 2);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -40,7 +37,7 @@ int main() {
         for (const auto& particle : particles) {
             sf::CircleShape circle(PARTICLE_RADIUS);
             circle.setFillColor(sf::Color::White);
-            circle.setOrigin(PARTICLE_RADIUS, PARTICLE_RADIUS);
+            //circle.setOrigin(PARTICLE_RADIUS, PARTICLE_RADIUS);
             circle.setPosition(particle.position);
             window.draw(circle);
         }

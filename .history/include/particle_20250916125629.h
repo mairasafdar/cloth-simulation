@@ -8,15 +8,12 @@ class Particle {
     sf::Vector2f position;
     sf::Vector2f previous_position;
     sf::Vector2f acceleration;
-bool is_pinned;
 
-    Particle(float x, float y, bool pinned = false) : position(x, y), previous_position(x, y),
-                                acceleration(0, 0), is_pinned(pinned) {}
+    Particle(float x, float y) 
+        : position(x, y), previous_position(x, y), acceleration(x, y) {}
 
     void applyForce(const sf::Vector2f& force) {
-        if (!is_pinned) {
-            acceleration += force;
-        }
+        acceleration += force;
     }
     void update(float time_step) {
         // verlet integration

@@ -13,7 +13,7 @@ bool is_pinned;
     Particle(float x, float y, bool pinned = false) : position(x, y), previous_position(x, y),
                                 acceleration(0, 0), is_pinned(pinned) {}
 
-    void applyForce(const sf::Vector2f& force) {
+    void apply_force(const sf::Vector2f& force) {
         if (!is_pinned) {
             acceleration += force;
         }
