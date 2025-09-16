@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PARTICLE_H
+#define PARTICLE_H
 
 #include <SFML/Graphics.hpp>
 
@@ -7,7 +8,7 @@ class Particle {
     sf::Vector2f position;
     sf::Vector2f previous_position;
     sf::Vector2f acceleration;
-    bool is_pinned;
+bool is_pinned;
 
     Particle(float x, float y, bool pinned = false) : position(x, y), previous_position(x, y),
                                 acceleration(0, 0), is_pinned(pinned) {}
@@ -18,16 +19,13 @@ class Particle {
         }
     }
     void update(float time_step) {
-    if (is_pinned) return;  // don’t move pinned particles
-
-    // Verlet integration
-    sf::Vector2f velocity = position - previous_position;
-    previous_position = position;
-    position += velocity + acceleration * (time_step * time_step);
-
-    // reset acceleration
-    acceleration = sf::Vector2f(0, 0);
-}
+        // verlet integration
+        if (!is_pinned) {return;}
+        sf::Vector2f velocity = position - previous_position;
+        previous_position = position;
+        position += velocity + acceleration * time_step * time_step;
+        acceleration = sf::Vector2f(0, 0); // reset acceleration after update
+    }
 
     void constrainToBounds(float width, float height) {
         if (position.x < 0) position.x = 0;
@@ -37,3 +35,4 @@ class Particle {
     }
 };
 
+#endif // PARTICLE_H

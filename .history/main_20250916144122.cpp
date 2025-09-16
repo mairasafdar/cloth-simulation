@@ -11,8 +11,8 @@ const float PARTICLE_RADIUS = 30.0f;
 const float GRAVITY = 10.0f;
 const float TIME_STEP = 0.1f;
 
-const int ROWS = 10;
-const int COLS = 10;
+const int ROWS = 20;
+const int COLS = 20;
 const float SPACING = 30.0f;
 
 

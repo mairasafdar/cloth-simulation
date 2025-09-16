@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CONSTRAINT_H
+#define CONSTRAINT_H
 
 #include "particle.h"
 #include <cmath>

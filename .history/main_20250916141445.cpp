@@ -51,9 +51,8 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
-                
+                InputHandler::handle_mouse_click(event, particles, constraints);
             }
-            InputHandler::handle_mouse_click(event, particles, constraints);
 
         }
         // apply gravity and Update particles
@@ -98,6 +97,7 @@ int main() {
             };
             window.draw(line, 2, sf::Lines);
         }
+
         window.display();
     }
 

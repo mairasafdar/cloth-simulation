@@ -51,16 +51,15 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
-                
+                InputHandler::handle_mouse_click(event, particles, constraints);
             }
-            InputHandler::handle_mouse_click(event, particles, constraints);
 
         }
         // apply gravity and Update particles
         for (auto& particle : particles) {
             particle.applyForce(sf::Vector2f(0.0f, GRAVITY)); // gravity
             particle.update(TIME_STEP);
-            particle.constrainToBounds(WIDTH, HEIGHT); 
+            particle.constrainToBounds(WIDTH, HEIGHT, PARTICLE_RADIUS); 
         }
 
         for (size_t i = 0; i < 5; ++i) { // iterate multiple times for stability
@@ -98,6 +97,7 @@ int main() {
             };
             window.draw(line, 2, sf::Lines);
         }
+
         window.display();
     }
 

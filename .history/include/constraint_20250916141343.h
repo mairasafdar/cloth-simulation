@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CONSTRAINT_H
+#define CONSTRAINT_H
 
 #include "particle.h"
 #include <cmath>
@@ -16,7 +17,6 @@ public:
         active = true;}
 
     void satisfy() {
-        if (!active) return;
         sf::Vector2f delta = p2->position - p1->position;
         float current_length = std::hypot(delta.x, delta.y);
         float difference = (current_length - initial_length) / current_length;
@@ -25,8 +25,6 @@ public:
         if (!p1->is_pinned) p1->position += correction;
         if (!p2->is_pinned) p2->position -= correction;
     }
-    void deactivate() {
-        active = false;
-    }
 };
 
+#endif // CONSTRAINT_H
