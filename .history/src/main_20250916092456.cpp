@@ -1,10 +1,11 @@
+#include "include/particle.h"
 #include <SFML/Graphics.hpp> 
 #include <vector>
 
-#include "particle.h"
+
 
 const int WIDTH = 1080;
-const int HEIGHT = 720;
+const int HEIGHT = 640;
 const float PARTICLE_RADIUS = 30.0f;
 const float GRAVITY = 10.0f;
 const float TIME_STEP = 0.01f;
@@ -12,6 +13,7 @@ const float TIME_STEP = 0.01f;
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "C++ Cloth Simulation");
+    window.setFramerateLimit(60);
 
     std::vector<Particle> particles;
     particles.emplace_back(WIDTH / 2, HEIGHT / 2);
